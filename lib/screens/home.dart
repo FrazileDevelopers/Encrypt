@@ -7,9 +7,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String encrypted = AesHelper.encrypt('password', 'Parth Aggarwal');
+  // Encrypted
+  String encrypted = AesHelper.encrypt(
+    'password',
+    'Parth Aggarwal',
+    mode: 'CFB',
+  );
+
+  // Decrypted
   String decrypted = AesHelper.decrypt(
-      'password', 'sPhQsHpXYFqPb7qdmTY7AFCgxos7Mmkzl0fDrwQ88ZY=');
+    'password',
+    'sPhQsHpXYFqPb7qdmTY7AEoHIr1w8kt+jUCTa0gvcAw=',
+    mode: 'CFB',
+  );
 
   @override
   void initState() {
