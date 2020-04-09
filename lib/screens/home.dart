@@ -1,5 +1,7 @@
 import 'package:encrypt/algorithm/aes.dart';
+import 'package:encrypt/algorithm/sha256.dart';
 import 'package:flutter/material.dart';
+import 'package:pointycastle/export.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -7,19 +9,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Encrypted
+  // AES Encrypted
   String encrypted = AesHelper.encrypt(
     'password',
     'Parth Aggarwal',
     mode: 'CFB',
   );
 
-  // Decrypted
+  // AES Decrypted
   String decrypted = AesHelper.decrypt(
     'password',
     'sPhQsHpXYFqPb7qdmTY7AEoHIr1w8kt+jUCTa0gvcAw=',
     mode: 'CFB',
   );
+
+  // SHA256 Encrypted
+  String sha256 = SHA256.hmacSha256('Parth Aggarwal').toString();
 
   @override
   void initState() {
@@ -63,6 +68,13 @@ class _HomePageState extends State<HomePage> {
             ),
             Text(
               'Decrypted => ' + decrypted,
+              style: TextStyle(
+                color: Colors.pinkAccent,
+                fontSize: 20.0,
+              ),
+            ),
+            Text(
+              'SHA256 => ' + sha256,
               style: TextStyle(
                 color: Colors.pinkAccent,
                 fontSize: 20.0,
